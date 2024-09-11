@@ -9,6 +9,8 @@ function App() {
   const [processing, setProcessing] = useState(false); // For "Processing..." state
   const [randomImages, setRandomImages] = useState([]);
 
+
+
   // Fetch random images for the sliding effect on page load
   useEffect(() => {
     const fetchRandomImages = async () => {
@@ -141,7 +143,7 @@ function App() {
               navigator.clipboard.writeText(image);
               alert("Image URL copied to clipboard!");
             }}
-            className="bg-indigo-500 text-white  rounded-r-lg hover:bg-indigo-600 transition-colors"
+            className="bg-indigo-500 text-white border-dashed hover:bg-indigo-600 transition-colors"
           >
             📋
           </button>
