@@ -22,8 +22,9 @@ function App() {
       setLoading(false);
     };
     fetchRandomImages();
-  }, []);
+  }, [processing]);
 
+  console.log("these are random image looks like",randomImages)
   // Fetch the random image with the selected filters
   const fetchImage = async () => {
     const params = new URLSearchParams();
@@ -46,7 +47,7 @@ function App() {
   };
 
   return (
-    <div className="relative min-h-screen bg-primary text-white">
+    <div className="relative min-h-screen bg-primary text-red-700">
       {/* Loading Screen */}
       {loading && (
         <div className="fixed inset-0 flex items-center justify-center bg-secondary h-full w-full bg-black">
@@ -124,6 +125,24 @@ function App() {
           </form>
         </div>
       </div>
+      {/* 5 generated already images */}
+      <div className="pt-24 container mx-auto px-4">
+        {/* Sliding Random Images */}
+        <div className="overflow-hidden mb-8">
+          <div className="flex space-x-4 animate-slide-left">
+            {randomImages.map((image, index) => (
+              <div key={index} className="flex-shrink-0">
+                <img
+                  src={image}
+                  alt={`Random ${index}`}
+                  className="rounded-lg shadow-lg w-full max-w-xs sm:max-w-sm md:max-w-md"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
     </div>
   );
 }
