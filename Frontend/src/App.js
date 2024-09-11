@@ -24,7 +24,7 @@ function App() {
     fetchRandomImages();
   }, [processing]);
 
-  console.log("these are random image looks like",randomImages)
+  console.log("these are random image looks like", randomImages)
   // Fetch the random image with the selected filters
   const fetchImage = async () => {
     const params = new URLSearchParams();
@@ -46,8 +46,10 @@ function App() {
     }
   };
 
+
+
   return (
-    <div className="relative min-h-screen bg-primary text-red-700">
+    <div className="relative min-h-screen bg-primary text-red-700 bg-slate-950">
       {/* Loading Screen */}
       {loading && (
         <div className="fixed inset-0 flex items-center justify-center bg-secondary h-full w-full bg-black">
@@ -67,17 +69,10 @@ function App() {
       </nav>
 
       {/* Main Content */}
-      <div className="pt-24 container mx-auto px-4">
-        {/* Display Generated Image */}
-        {image && (
-          <div className="mb-8 text-center">
-            <h2 className="text-2xl mb-4">Generated Image:</h2>
-            <img src={image} alt="Random" className="rounded-lg shadow-lg mx-auto w-full max-w-md" />
-          </div>
-        )}
+      <div className="pt-24 container mx-auto px-4 grid grid-rows-2 grid-cols-1">
 
         {/* Form */}
-        <div className="bg-secondary p-6 rounded-lg shadow-lg max-w-md mx-auto mb-8">
+        <div className="bg-secondary p-6 rounded-lg shadow-white max-w-md mx-auto mb-8 shadow-2xl">
           <h2 className="text-2xl mb-4">Generate Random Image</h2>
           <form
             onSubmit={(e) => {
@@ -110,13 +105,13 @@ function App() {
             {/* Button with processing spinner */}
             <div>
               {processing ? (
-                <button type="button" class="inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-indigo-500 hover:bg-indigo-400 transition ease-in-out duration-150 cursor-not-allowed" disabled="">
-                Processing...
-              </button>
+                <button type="button" class=" bg-green-500 text-white py-2 rounded-lg hover:bg-green-600  h-12 w-36 transition ease-in-out duration-150 cursor-not-allowed" disabled="">
+                  Processing...
+                </button>
               ) : (
                 <button
                   type="submit"
-                  className=" bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition-colors h-12 w-24"
+                  className=" bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition-colors h-12 w-36"
                 >
                   Generate Image
                 </button>
@@ -124,13 +119,43 @@ function App() {
             </div>
           </form>
         </div>
+
       </div>
+      {/* Display Generated Image */}
+      {image && (
+        <div>
+          <div className="mb-8 text-center">
+            <h2 className="text-2xl mb-4">Generated Image:</h2>
+            <img src={image} alt="Random" className="rounded-lg shadow-lg mx-auto w-full max-w-md" />
+          </div>
+          {/* Link Box with Copy Button */}
+        <div className="mt-4 flex justify-center items-center">
+          <input
+            type="text"
+            readOnly
+            value={image} // The image source URL
+            className="bg-gray-800 text-white p-2 rounded-l-lg w-64"
+          />
+          <button
+            onClick={() => {
+              navigator.clipboard.writeText(image);
+              alert("Image URL copied to clipboard!");
+            }}
+            className="bg-indigo-500 text-white  rounded-r-lg hover:bg-indigo-600 transition-colors"
+          >
+            📋
+          </button>
+        </div>
+        </div>
+      )}
+
       {/* 5 generated already images */}
       <div className="pt-24 container mx-auto px-4">
         {/* Sliding Random Images */}
         <div className="overflow-hidden mb-8">
           <div className="flex space-x-4 animate-slide-left">
-            {randomImages.map((image, index) => (
+            {/* Duplicate the images array */}
+            {[...randomImages, ...randomImages].map((image, index) => (
               <div key={index} className="flex-shrink-0">
                 <img
                   src={image}
