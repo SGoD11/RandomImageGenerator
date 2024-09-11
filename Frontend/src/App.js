@@ -49,8 +49,8 @@ function App() {
     <div className="relative min-h-screen bg-primary text-white">
       {/* Loading Screen */}
       {loading && (
-        <div className="fixed inset-0 flex items-center justify-center bg-secondary">
-          <div className="animate-spin rounded-full h-32 w-32 border-t-4 border-blue-500"></div>
+        <div className="fixed inset-0 flex items-center justify-center bg-secondary h-full w-full bg-black">
+          <div className="animate-spin rounded-full h-32 w-32 border-t-4 border-red-500"></div>
         </div>
       )}
 
@@ -59,8 +59,8 @@ function App() {
         <div className="container mx-auto flex justify-between items-center px-4">
           <div className="left text-2xl font-bold">RandomImage</div>
           <div className="right space-x-6">
-            <a href="#about" className="hover:text-blue-400">About</a>
-            <a href="#portfolio" className="hover:text-blue-400">Portfolio</a>
+            <a href="#about" className="hover:text-green-400">About</a>
+            <a href="#portfolio" className="hover:text-green-400">Portfolio</a>
           </div>
         </div>
       </nav>
