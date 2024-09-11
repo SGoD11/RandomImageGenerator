@@ -35,7 +35,7 @@ function App() {
 
     try {
       setProcessing(true); // Start processing
-      const response = await axios.get(`http://localhost:5000/api/image?${params.toString()}`, {
+      const response = await axios.get(`https://randomimagegenerator.onrender.com/api/image?${params.toString()}`, {
         responseType: 'blob',
       });
 
